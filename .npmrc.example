@@ -1,0 +1,3 @@
+@<scope>:registry=<private_registry_url>
+registry=https://registry.npmjs.org
+

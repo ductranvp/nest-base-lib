@@ -1,0 +1,63 @@
+version: "3"
+services:
+  postgres:
+    container_name: nest-base-postgres
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: appdb
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  adminer:
+    container_name: nest-base-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  mongo:
+    container_name: nest-base-mongo
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+      - mongo:/data/configdb
+
+  mongo-express:
+    container_name: nest-base-mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_URL: mongodb://root:admin@mongo:27017/
+
+  redis:
+    container_name: nest-base-redis
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis:/data
+
+volumes:
+  postgres:
+    driver: local
+  mongo:
+    driver: local
+  redis:
+    driver: local
