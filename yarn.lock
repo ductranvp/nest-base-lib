@@ -528,25 +528,6 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@devhub/nest-lib@^0.0.1":
-  version "0.0.1"
-  resolved "http://localhost:8082/repository/private-hosted/@devhub/nest-lib/-/nest-lib-0.0.1.tgz#1e0b5bdcc5d09c86a014a6a567adf5e5fb66e6e7"
-  integrity sha512-KMZ0Yk0uIyvfWabS+JqOtq7I1eSq7rcU52HHn/voErzCoOsCNGWHKu7q6q/En21/IM7HTwryMo/UlTvxPZ4GRA==
-  dependencies:
-    "@nestjs/common" "^9.0.0"
-    "@nestjs/core" "^9.0.0"
-    "@nestjs/platform-express" "^9.0.0"
-    "@nestjs/typeorm" "^9.0.1"
-    class-validator "^0.13.2"
-    nest-winston "^1.8.0"
-    nestjs-i18n "^9.2.2"
-    reflect-metadata "^0.1.13"
-    rimraf "^3.0.2"
-    rxjs "^7.2.0"
-    typeorm "^0.3.10"
-    winston "^3.8.2"
-    winston-daily-rotate-file "^4.7.1"
-
 "@eslint/eslintrc@^1.3.3":
   version "1.3.3"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-1.3.3.tgz#2b044ab39fdfa75b4688184f9e573ce3c5b0ff95"

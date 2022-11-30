@@ -3,9 +3,26 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "plugins": ["@nestjs/swagger"],
+    "plugins": [
+      "@nestjs/swagger"
+    ],
     "assets": [
-      { "include": "i18n/**/*", "watchAssets": true }
-    ]
+      {
+        "include": "i18n/**/*",
+        "watchAssets": true
+      }
+    ],
+    "webpack": true
+  },
+  "projects": {
+    "nest-lib": {
+      "type": "library",
+      "root": "libs/nest-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/nest-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nest-lib/tsconfig.lib.json"
+      }
+    }
   }
 }
