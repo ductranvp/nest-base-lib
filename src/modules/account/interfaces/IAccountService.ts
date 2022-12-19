@@ -3,11 +3,13 @@ import { AccountDto } from '../dtos/response/account.dto';
 import { UpdateAccountDto } from '../dtos/request/update-account.dto';
 import { PageAccountDto } from '../dtos/response/page-account.dto';
 import { PageRequestDto } from '../../shared/dtos/page-request.dto';
+import { AccountEntity } from '../account.entity';
 
 export interface IAccountService {
   createAccount(dto: CreateAccountDto): Promise<AccountDto>;
   getAccountById(id: string): Promise<AccountDto>;
   getAccountByEmail(email: string): Promise<AccountDto>;
+  getAccountEntityByEmail(email: string): Promise<AccountEntity>;
   getAccounts(query: PageRequestDto): Promise<PageAccountDto>;
   updateAccount(id: string, dto: UpdateAccountDto): Promise<AccountDto>;
   deleteAccount(id: string): Promise<boolean>;

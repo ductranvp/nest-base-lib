@@ -12,6 +12,7 @@ import { PageRequestDto } from '../shared/dtos/page-request.dto';
 import { Cache } from 'cache-manager';
 import { AppEnv } from '../../common/constants/app.constant';
 import { hashPassword } from '../../common/utils/password.util';
+import { AccountEntity } from './account.entity';
 
 @Injectable()
 export class AccountService implements IAccountService {
@@ -69,5 +70,15 @@ export class AccountService implements IAccountService {
   async getAccounts(query: PageRequestDto): Promise<PageAccountDto> {
     const result = await this.repo.getMany(query);
     return AccountMapper.pageEntityToPageDto(result);
+  }
+
+  async getAccountEntityByEmail(email: string): Promise<AccountEntity> {
+    const exist = await this.repo.getOne({ email });
+    if (!exist)
+      throw new CustomException(HttpStatus.NOT_FOUND, {
+        code: ErrorCode.ACCOUNT_NOT_FOUND,
+        message: ErrorMessage.ACCOUNT_NOT_FOUND,
+      });
+    return exist;
   }
 }
