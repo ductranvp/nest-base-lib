@@ -8,14 +8,14 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseConfig } from './configs/database.config';
 import { LoggerMiddleware, NestLibModule } from '@devhub/nest-lib';
-import { ErrorMessage } from './common/constants/error.constant';
-import { AccountModule } from './modules/account/account.module';
-import { SharedModule } from './modules/shared/shared.module';
-import { AuthModule } from './modules/auth/auth.module';
+import { ErrorMessage } from './constants/error.constant';
+import { AccountModule } from '../modules/account/account.module';
+import { SharedModule } from '../modules/shared/shared.module';
+import { AuthModule } from '../modules/auth/auth.module';
 import { i18nConfig } from './configs/i18n.config';
 import { I18nModule } from 'nestjs-i18n';
 import * as redisStore from 'cache-manager-redis-store';
-import { AppEnv } from './common/constants/app.constant';
+import { AppEnv } from './constants/app.constant';
 
 @Module({
   imports: [

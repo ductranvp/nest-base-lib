@@ -1,3 +1,3 @@
-export * from './shared';
-export * from './typeorm';
+export * from './common';
+export * from './typeorm-pg';
 export * from './nest-lib.module';

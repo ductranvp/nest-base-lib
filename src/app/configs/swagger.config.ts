@@ -1,6 +1,6 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { INestApplication, Logger } from '@nestjs/common';
-import { AppEnv, NodeEnv } from '../common/constants/app.constant';
+import { AppEnv, NodeEnv } from '../constants/app.constant';
 
 export function setupSwagger(app: INestApplication) {
   const logger = new Logger('Swagger');

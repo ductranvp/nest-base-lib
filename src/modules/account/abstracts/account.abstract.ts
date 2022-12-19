@@ -1,7 +1,7 @@
 import { AccountRole } from '../account.constant';
-import { IBaseEntity } from '@devhub/nest-lib';
+import { BaseAbstract } from '@devhub/nest-lib';
 
-export interface IAccountEntity extends IBaseEntity {
+export interface AccountAbstract extends BaseAbstract {
   email: string;
   password: string;
   roles: AccountRole[];

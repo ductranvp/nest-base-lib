@@ -17,9 +17,9 @@
     "postinstall": "husky install",
     "typeorm": "typeorm-ts-node-esm",
     "migration:create": "yarn typeorm migration:create",
-    "migration:generate": "yarn typeorm -d ./src/configs/migration.config.ts migration:generate",
-    "migration:revert": "yarn typeorm -d ./src/configs/migration.config.ts  migration:revert",
-    "migration:run": "yarn typeorm -d ./src/configs/migration.config.ts migration:run"
+    "migration:generate": "yarn typeorm -d src/migrations/migration.config.ts migration:generate",
+    "migration:revert": "yarn typeorm -d src/migrations/migration.config.ts  migration:revert",
+    "migration:run": "yarn typeorm -d src/migrations/migration.config.ts migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

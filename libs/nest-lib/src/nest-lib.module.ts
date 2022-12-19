@@ -4,7 +4,7 @@ import {
   CustomExceptionFilter,
   GlobalExceptionFilter,
   MODULE_OPTION_KEY,
-} from './shared';
+} from './common';
 import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
 import { Type } from '@nestjs/common/interfaces/type.interface';
 import { ForwardReference } from '@nestjs/common/interfaces/modules/forward-reference.interface';

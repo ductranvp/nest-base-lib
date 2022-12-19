@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 config();
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from '@devhub/nest-lib';
-import { AppEnv } from '../common/constants/app.constant';
+import { AppEnv } from '../app/constants/app.constant';
 
 export default new DataSource({
   type: AppEnv.DB_TYPE as any,
@@ -12,6 +12,6 @@ export default new DataSource({
   username: AppEnv.DB_USER,
   password: AppEnv.DB_PASS,
   entities: ['src/**/*.entity.ts'],
-  migrations: ['src/migrations/**/*.ts'],
+  migrations: ['src/migrations/typeorm-pg/**/*.ts'],
   namingStrategy: new SnakeNamingStrategy(),
 });

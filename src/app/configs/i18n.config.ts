@@ -3,7 +3,7 @@ import {
   HeaderResolver,
   I18nOptions,
 } from 'nestjs-i18n';
-import { Language } from '../common/constants/app.constant';
+import { Language } from '../constants/app.constant';
 
 export const i18nConfig: I18nOptions = {
   fallbackLanguage: Language.ENGLISH,

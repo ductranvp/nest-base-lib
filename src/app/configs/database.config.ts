@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { AppEnv } from '../common/constants/app.constant';
+import { AppEnv } from '../constants/app.constant';
 import { SnakeNamingStrategy } from '@devhub/nest-lib';
 
 export const databaseConfig: TypeOrmModuleOptions = {

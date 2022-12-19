@@ -1,5 +1,5 @@
 import { JwtModuleOptions } from '@nestjs/jwt/dist/interfaces/jwt-module-options.interface';
-import { AppEnv } from '../common/constants/app.constant';
+import { AppEnv } from '../constants/app.constant';
 
 export const jwtConfig: JwtModuleOptions = {
   secret: AppEnv.JWT_SECRET,

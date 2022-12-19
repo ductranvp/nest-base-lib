@@ -10,12 +10,12 @@ import {
   Query,
   Req,
 } from '@nestjs/common';
-import { CreateAccountDto } from './dtos/request/create-account.dto';
+import { AccountCreateDto } from './dtos/request/account.create.dto';
 import { AccountService } from './account.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AccountDto } from './dtos/response/account.dto';
-import { UpdateAccountDto } from './dtos/request/update-account.dto';
-import { PageAccountDto } from './dtos/response/page-account.dto';
+import { AccountUpdateDto } from './dtos/request/account.update.dto';
+import { AccountPageDto } from './dtos/response/account.page.dto';
 import { PageRequestDto } from '../shared/dtos/page-request.dto';
 import { UseAppGuard } from '../auth/decorators/use-app-guard.decorator';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -32,13 +32,13 @@ export class AccountController {
   @Post('create-one')
   createOne(
     @Req() request,
-    @Body() dto: CreateAccountDto,
+    @Body() dto: AccountCreateDto,
   ): Promise<AccountDto> {
     return this.service.createAccount(dto);
   }
 
   @Get('get-many')
-  getMany(@Query() query: PageRequestDto): Promise<PageAccountDto> {
+  getMany(@Query() query: PageRequestDto): Promise<AccountPageDto> {
     return this.service.getAccounts(query);
   }
 
@@ -50,7 +50,7 @@ export class AccountController {
   @Patch('update-one/:id')
   updateOne(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() dto: UpdateAccountDto,
+    @Body() dto: AccountUpdateDto,
   ): Promise<AccountDto> {
     return this.service.updateAccount(id, dto);
   }

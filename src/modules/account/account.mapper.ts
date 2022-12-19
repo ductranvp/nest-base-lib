@@ -1,10 +1,10 @@
-import { CreateAccountDto } from './dtos/request/create-account.dto';
-import { AccountEntity } from './account.entity';
+import { AccountCreateDto } from './dtos/request/account.create.dto';
+import { AccountEntity } from './repository/entities/account.entity';
 import { AccountDto } from './dtos/response/account.dto';
 import { IPageResponse } from '@devhub/nest-lib';
 
 export class AccountMapper {
-  public static createDtoToEntity(dto: CreateAccountDto): AccountEntity {
+  public static createDtoToEntity(dto: AccountCreateDto): AccountEntity {
     return {
       id: undefined,
       email: dto.email,

@@ -1,16 +1,16 @@
-import { CreateAccountDto } from '../dtos/request/create-account.dto';
+import { AccountCreateDto } from '../dtos/request/account.create.dto';
 import { AccountDto } from '../dtos/response/account.dto';
-import { UpdateAccountDto } from '../dtos/request/update-account.dto';
-import { PageAccountDto } from '../dtos/response/page-account.dto';
+import { AccountUpdateDto } from '../dtos/request/account.update.dto';
+import { AccountPageDto } from '../dtos/response/account.page.dto';
 import { PageRequestDto } from '../../shared/dtos/page-request.dto';
-import { AccountEntity } from '../account.entity';
+import { AccountEntity } from '../repository/entities/account.entity';
 
 export interface IAccountService {
-  createAccount(dto: CreateAccountDto): Promise<AccountDto>;
+  createAccount(dto: AccountCreateDto): Promise<AccountDto>;
   getAccountById(id: string): Promise<AccountDto>;
   getAccountByEmail(email: string): Promise<AccountDto>;
   getAccountEntityByEmail(email: string): Promise<AccountEntity>;
-  getAccounts(query: PageRequestDto): Promise<PageAccountDto>;
-  updateAccount(id: string, dto: UpdateAccountDto): Promise<AccountDto>;
+  getAccounts(query: PageRequestDto): Promise<AccountPageDto>;
+  updateAccount(id: string, dto: AccountUpdateDto): Promise<AccountDto>;
   deleteAccount(id: string): Promise<boolean>;
 }

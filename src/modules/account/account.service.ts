@@ -1,18 +1,18 @@
 import { CACHE_MANAGER, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { CreateAccountDto } from './dtos/request/create-account.dto';
+import { AccountCreateDto } from './dtos/request/account.create.dto';
 import { AccountMapper } from './account.mapper';
 import { IAccountService } from './interfaces/IAccountService';
 import { AccountDto } from './dtos/response/account.dto';
-import { UpdateAccountDto } from './dtos/request/update-account.dto';
-import { AccountRepository } from './account.repository';
-import { PageAccountDto } from './dtos/response/page-account.dto';
-import { ErrorCode, ErrorMessage } from '../../common/constants/error.constant';
+import { AccountUpdateDto } from './dtos/request/account.update.dto';
+import { AccountRepository } from './repository/repositories/account.repository';
+import { AccountPageDto } from './dtos/response/account.page.dto';
+import { ErrorCode, ErrorMessage } from '../../app/constants/error.constant';
 import { CustomException } from '@devhub/nest-lib';
 import { PageRequestDto } from '../shared/dtos/page-request.dto';
 import { Cache } from 'cache-manager';
-import { AppEnv } from '../../common/constants/app.constant';
-import { hashPassword } from '../../common/utils/password.util';
-import { AccountEntity } from './account.entity';
+import { AppEnv } from '../../app/constants/app.constant';
+import { hashPassword } from '../../app/utils/password.util';
+import { AccountEntity } from './repository/entities/account.entity';
 
 @Injectable()
 export class AccountService implements IAccountService {
@@ -21,7 +21,7 @@ export class AccountService implements IAccountService {
     @Inject(CACHE_MANAGER) private cacheService: Cache,
   ) {}
 
-  async createAccount(dto: CreateAccountDto): Promise<AccountDto> {
+  async createAccount(dto: AccountCreateDto): Promise<AccountDto> {
     const prepareEntity = AccountMapper.createDtoToEntity(dto);
     prepareEntity.password = await hashPassword(prepareEntity.password);
     const created = await this.repo.createOne(prepareEntity);
@@ -55,7 +55,7 @@ export class AccountService implements IAccountService {
     return AccountMapper.entityToDto(exist);
   }
 
-  async updateAccount(id: string, dto: UpdateAccountDto): Promise<AccountDto> {
+  async updateAccount(id: string, dto: AccountUpdateDto): Promise<AccountDto> {
     await this.getAccountById(id);
     if (dto.password) dto.password = await hashPassword(dto.password);
     await this.repo.updateOne({ id }, dto);
@@ -67,7 +67,7 @@ export class AccountService implements IAccountService {
     return this.repo.deleteOne({ id }, true);
   }
 
-  async getAccounts(query: PageRequestDto): Promise<PageAccountDto> {
+  async getAccounts(query: PageRequestDto): Promise<AccountPageDto> {
     const result = await this.repo.getMany(query);
     return AccountMapper.pageEntityToPageDto(result);
   }

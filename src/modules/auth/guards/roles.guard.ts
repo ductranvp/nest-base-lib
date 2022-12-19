@@ -9,10 +9,7 @@ import { Reflector } from '@nestjs/core';
 import { AccountRole } from '../../account/account.constant';
 import { ROLES_KEY } from '../auth.constant';
 import { CustomException } from '@devhub/nest-lib';
-import {
-  ErrorCode,
-  ErrorMessage,
-} from '../../../common/constants/error.constant';
+import { ErrorCode, ErrorMessage } from '../../../app/constants/error.constant';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

@@ -1,4 +1,4 @@
-export * from './IBaseEntity';
+export * from '../abstracts/base.abstract';
 export * from './IBaseRepository';
 export * from './ICustomLogger';
 export * from './IErrorDetail';

@@ -5,10 +5,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IBaseEntity } from '../../shared';
+import { BaseAbstract } from '../../common';
 
 @Entity()
-export class BaseEntity implements IBaseEntity {
+export class BaseSchema implements BaseAbstract {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

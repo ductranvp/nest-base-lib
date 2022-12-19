@@ -10,11 +10,11 @@ import {
   IPageRequest,
   IPageResponse,
   calculatePageOffset,
-} from '../../shared';
+} from '../../common';
 import { FindOptionsWhere } from 'typeorm/find-options/FindOptionsWhere';
-import { BaseEntity } from '../entities';
+import { BaseSchema } from '../entities';
 
-export class BaseRepository<E extends BaseEntity>
+export class BaseMongoRepository<E extends BaseSchema>
   implements IBaseRepository<E>
 {
   protected repo: Repository<E>;
