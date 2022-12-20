@@ -1,5 +1,3 @@
-import { Repository } from 'typeorm';
-
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import {
   DefaultValue,
@@ -11,51 +9,42 @@ import {
   IPageResponse,
   calculatePageOffset,
 } from '../../common';
-import { FindOptionsWhere } from 'typeorm/find-options/FindOptionsWhere';
-import { BaseSchema } from '../entities';
+import { BaseMongoEntity } from '../schemas';
+import { FilterQuery, Model } from 'mongoose';
 
-export class BaseMongoRepository<E extends BaseSchema>
+export class BaseMongoRepository<E extends BaseMongoEntity>
   implements IBaseRepository<E>
 {
-  protected repo: Repository<E>;
+  protected repo: Model<E>;
   protected entityColumns: string[];
   protected entityName: string;
 
-  constructor(repository: Repository<E>) {
+  constructor(repository: Model<E>) {
     this.repo = repository;
-    this.entityName = this.repo.metadata.name;
-    this.entityColumns = this.repo.metadata.columns.map((prop) => {
-      return prop.propertyName;
-    });
-  }
-
-  protected get alias(): string {
-    return this.repo.metadata.targetName;
+    this.entityName = null;
+    this.entityColumns = [];
   }
 
   async createOne(data: E): Promise<E> {
-    return this.repo.save(data);
+    return this.repo.create(data);
   }
 
-  async getOne(findCondition: FindOptionsWhere<E>): Promise<E> {
-    return this.repo.findOne({ where: findCondition });
+  async getOne(findCondition: FilterQuery<E>): Promise<E> {
+    return this.repo.findOne(findCondition);
   }
 
-  async updateOne(
-    findCondition: FindOptionsWhere<E>,
-    data: any,
-  ): Promise<boolean> {
-    const result = await this.repo.update(findCondition, data);
-    return result.affected === 1;
+  async updateOne(findCondition: FilterQuery<E>, data: any): Promise<boolean> {
+    const result = await this.repo.updateOne(findCondition, data);
+    return result.matchedCount === 1;
   }
 
   async deleteOne(
-    findCondition: FindOptionsWhere<E>,
+    findCondition: FilterQuery<E>,
     softDelete: boolean,
   ): Promise<boolean> {
     let result;
     if (softDelete) {
-      result = await this.repo.softDelete(findCondition);
+      result = await this.repo.updateOne(findCondition, {});
     } else {
       result = await this.repo.delete(findCondition);
     }

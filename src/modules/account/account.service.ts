@@ -4,7 +4,7 @@ import { AccountMapper } from './account.mapper';
 import { IAccountService } from './interfaces/IAccountService';
 import { AccountDto } from './dtos/response/account.dto';
 import { AccountUpdateDto } from './dtos/request/account.update.dto';
-import { AccountRepository } from './repository/repositories/account.repository';
+import { AccountRepository } from './repository/typeorm-pg/repositories/account.repository';
 import { AccountPageDto } from './dtos/response/account.page.dto';
 import { ErrorCode, ErrorMessage } from '../../app/constants/error.constant';
 import { CustomException } from '@devhub/nest-lib';
@@ -12,7 +12,7 @@ import { PageRequestDto } from '../shared/dtos/page-request.dto';
 import { Cache } from 'cache-manager';
 import { AppEnv } from '../../app/constants/app.constant';
 import { hashPassword } from '../../app/utils/password.util';
-import { AccountEntity } from './repository/entities/account.entity';
+import { AccountEntity } from './repository/typeorm-pg/entities/account.entity';
 
 @Injectable()
 export class AccountService implements IAccountService {

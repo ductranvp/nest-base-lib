@@ -1,5 +1,5 @@
 import { AccountCreateDto } from './dtos/request/account.create.dto';
-import { AccountEntity } from './repository/entities/account.entity';
+import { AccountEntity } from './repository/typeorm-pg/entities/account.entity';
 import { AccountDto } from './dtos/response/account.dto';
 import { IPageResponse } from '@devhub/nest-lib';
 
